@@ -1,0 +1,9 @@
+→ When started, client connects to the server and sends random number of commands (0…10) to the server, 
+then immediately disconnects.  – this is the complete lifetime of the single client. 
+Commands should be randomly distributed, as well as the values of the operands.
+For simplicity none of the operands is larger than 1000. 
+
+
+→ This application will simultaneously start/run several clients which will connect to TCP server and send messages as explained before.
+
+→ The CreateClients(numClients) function starts and runs numClients amount of clients (specified by user)
