@@ -1,9 +1,5 @@
-→ When started, client connects to the server and sends random number of commands (0…10) to the server, 
-then immediately disconnects.  – this is the complete lifetime of the single client. 
-Commands should be randomly distributed, as well as the values of the operands.
-For simplicity none of the operands is larger than 1000. 
-
-
-→ This application will simultaneously start/run several clients which will connect to TCP server and send messages as explained before.
-
-→ The CreateClients(numClients) function starts and runs numClients amount of clients (specified by user)
+● Create a TCP client that connects to the server.
+● Send a random number of commands (0...10) to the server with randomly generated operands (not larger than 1000) and immediately disconnect from the server.
+● Implement a C++ console application that starts/runs multiple instances of the client simultaneously, sending messages to the server as specified.
+● Optionally, wait synchronously for server response after sending a command and write the response to standard output.
+● Test scenarios with different numbers of clients, both less and more than N*10 (where N is the number of cores on the machine).
