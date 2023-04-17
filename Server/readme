@@ -1,32 +1,7 @@
-→ Server is listening in infinite loop for new TCP connections inside main thread.
-
-→ During Server startup it creates a a single Log.txt file
-
-
-→ When new client/connection arrives, server processes connection inside main thread,  
-creates and assigns new thread to this connection/client session,  
-assigns a randomly generated clientID to this client session (in the range 0…MAX_UINT) 
-and then continues to listen on main thread for new connections.
-
-
-→ During the lifetime of client session, any message that is received from the client, 
-is written to the beforementioned Log.txt file 
-in following format: „[id of client thread] : [clientId] : [command received from client(OperandA, OperandB)] : [result of command processing]“
-When client leaves session (disconnects), client Thread is propperly 
-released and message is written inside Log.txt file in the format: „[id of client thread] : [clientId] : [Client has disconnected]“.
-
-
-→ Four different type of commands can be received from Client:
-Add, Subtract, Multiply, Divide.
-
-
-→ Format of the command message sent from client is (i.e. for Addition):“Add(OperandA, OperandB)“ 
-
-→ After result is calculated on server side, message is written to the Log.txt as noted before:
-„[id of client thread] : [clientId] : [command received from client(OperandA, OperandB)] : [result of command processing]“
-
-
-→ Server can serve up to N*10 clients at the time, where N is number of Cores on the machine on which Server runs. 
-
-→ If more clients arrive while N*10  are already served, Server
-rejects the client and writes appropriate message in the Log.txt file. i.e. „Server busy, new client rejected“).
+● Create a TCP server that listens for incoming connections in an infinite loop in the main thread.
+● Create a log.txt file on the disk during server startup.
+● Process incoming connections in the main thread, create and assign a new thread to each connection/client session, and generate a random clientID (0...MAX_UINT) for each client session.
+● Continuously listen for new connections in the main thread while handling client sessions in separate threads.
+● Receive messages from clients, process them (performing addition, subtraction, multiplication, or division as specified in the message), and write the results to the log.txt file in the format: "[id of client thread] : [clientId] : [command received from client(OperandA, OperandB)] : [result of command processing]".
+● Handle disconnections of clients properly, releasing the client thread, and writing a message to the log.txt file in the format: "[id of client thread] : [clientId] : [Client has disconnected]".
+● Implement a mechanism to limit the number of simultaneous connections to N*10 (where N is the number of cores on the machine, or 4 if N is undetectable). Reject new clients if the limit is reached and write an appropriate message to the log.txt file.
